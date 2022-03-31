@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 
@@ -9,19 +8,27 @@ class CountPage extends StatefulWidget {
 class _CountPageState extends State {
   int _count = 0;
   Widget build(BuildContext context) {
-    return CountWidget(count: _count, onHandlleCount: (){
-      print('hi rouzip');
-    }, onHandleChange: (value){
-      setState(() {
-        _count = _count + value;
-      });
+    return CountWidget(
+      count: _count,
+      onHandlleCount: (){
+        print('hi rouzip');
+      },
+      onHandleChange: (value){
+        setState(() {
+          _count = _count + value;
+        });
     },);
+  }
+@override
+  void didUpdateWidget(CountPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('======didUpdateWidget');
   }
 }
 
 class CountWidget extends StatelessWidget {
   final int count;
-  final VoidCallback onHandlleCount;
+  final void Function() onHandlleCount;
   final Function(int) onHandleChange;
   CountWidget({
     required this.count,
@@ -33,7 +40,8 @@ class CountWidget extends StatelessWidget {
     return Column(
       children: [
         Text('$count'),
-        TextButton(onPressed:onHandlleCount, child: Text('点击')),
+        TextButton(onPressed: onHandlleCount, child: Text('点击')),
+        TextButton(onPressed: (){onHandlleCount();}, child: Text('点击')),
         TextButton(onPressed:(){onHandleChange(1);}, child: Text('点击+1')),
       ],
     );
