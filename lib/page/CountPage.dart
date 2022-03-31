@@ -6,7 +6,13 @@ class CountPage extends StatefulWidget {
 }
 
 class _CountPageState extends State {
-  int _count = 0;
+  late int _count;
+  @override
+  void initState(){
+    super.initState();
+    print('=====initState');
+    _count = 0;
+  }
   Widget build(BuildContext context) {
     return CountWidget(
       count: _count,
@@ -19,6 +25,11 @@ class _CountPageState extends State {
         });
     },);
   }
+@override
+void didChangeDependencies() {
+  super.didChangeDependencies();
+  print('=====didChangeDependencies');
+}
 @override
   void didUpdateWidget(CountPage oldWidget) {
     super.didUpdateWidget(oldWidget);
