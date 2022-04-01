@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_demo/page/CountPage.dart';
-import 'package:flutter_application_demo/widget/Echo.dart';
-import 'package:flutter_application_demo/widget/StateLifecycleTest.dart';
+import 'package:flutter_application_demo/page/1.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
         appBar: new AppBar(
           title: new Text('我的应用'),
         ),
-        body: CountPage(),
+        body: FutureBuilderRoute(),
       ),
     );
   }
