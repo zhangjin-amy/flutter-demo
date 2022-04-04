@@ -1,10 +1,10 @@
 class ResItemModel {
-  final String id;
-  final String fullName;
+  final String date;
+  final String time;
 
-  ResItemModel(this.id, this.fullName);
+  ResItemModel(this.date, this.time);
 
   ResItemModel.fromJson(Map<String, dynamic> json)
-      : id = json['id'] as String,
-        fullName = json['full_name'] as String;
+      : date = json['date'] as String,
+        time = json['time'] as String;
 }
