@@ -9,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
  
 class _TabNavigatorState extends State<HomePage> {
-  List _imageUrl =['assets/images/rouzip.jpg', 'assets/images/amy.jpg', 'assets/images/amity.jpg'];
+  List _imageUrl =['assets/images/amy/amy0.jpg', 'assets/images/amy/amy0.jpg', 'assets/images/amy/amy0.jpg', 'assets/images/amy/amy0.jpg', 'assets/images/amy/amy0.jpg', 'assets/images/amy/amy0.jpg', 'assets/images/amy/amy0.jpg', 'assets/images/amy/amy0.jpg', 'assets/images/amy/amy0.jpg'];
   double appBarAlpha = 0;
   __onScroll(offset){
     double alpha = offset/APPBAR_SCROLL_OFFSET;

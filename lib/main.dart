@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_demo/page/1.dart';
+import 'package:flutter_application_demo/page/3.dart';
 import 'package:flutter_application_demo/page/AmyHome.dart';
 import 'package:flutter_application_demo/page/ListPage.dart';
 
@@ -24,22 +25,24 @@ class ListRouzip extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (context, index) {
         if (index % 2 == 0) {
-          return (
-            Column(
-              children: [
-                ListTile(title: Text(items[index]),),
-                Divider(color: Colors.blue,)
-              ]
+          return (Column(children: [
+            ListTile(
+              title: Text(items[index]),
+            ),
+            Divider(
+              color: Colors.blue,
             )
-          );
+          ]));
         } else {
-          return ListTile(title: Text(items[index]),);
+          return ListTile(
+            title: Text(items[index]),
+          );
         }
       },
       itemCount: items.length,
     );
     // return ListView.separated(
-    //   itemBuilder: (BuildContext context, int index) => ListTile(title: Text(items[index])), 
+    //   itemBuilder: (BuildContext context, int index) => ListTile(title: Text(items[index])),
     //   separatorBuilder: (BuildContext context, int index) {
     //     if(index % 2 == 0) {
     //       return Divider(color: Colors.red,);
@@ -63,39 +66,123 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        // body: ListView.builder(
-        //   itemCount: items.length,
-        //   itemBuilder: (context, index) {
-        //     return ListTile(
-        //       title: Text(items[index]),
-        //     );
-        //   },
-        // ),
-        body: ListRouzip(items: List<String>.generate(10000, (i) => 'Item $i')),
-        // body: CustomScrollView(
-        //   slivers: [
-        //     // SliverAppBar(
-        //     //   title: Text('rouzip'),
-        //     //   flexibleSpace: Image.asset(
-        //     //     'assets/images/amy.jpg',
-        //     //     fit: BoxFit.fill,
-        //     //   ),
-        //     //   expandedHeight: 200,
-        //     // ),
-        //     // SliverList(delegate: SliverChildBuilderDelegate(
-        //     //     // The builder function returns a ListTile with a title that
-        //     //     // displays the index of the current item.
-        //     //     (context, index) => ListTile(title: Text('Item #$index')),
-        //     //     // Builds 1000 ListTiles
-        //     //     childCount: 1000,
-        //     //   ),)
+      home: MainScreen(),
+      // home: HeroAnimation(),
+    );
+  }
+}
 
-        //     // ListView 适用于短列表，长列表需要ListView.build
-        //     // ListRouzip(items: List<String>.generate(1000, (index) => '$index'))
-        //   ],
-        // ),
+class MainScreen extends StatelessWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Main Screen'),
       ),
+      body: GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return  DetailScreen();
+          }));
+        },
+        child: Hero(
+          tag: 'imageHero',
+          // child: Image.asset(
+          //   'assets/images/amy1.jpg'
+          // ),
+          child: Text(
+            '看看小宋喜欢啥',
+            style: TextStyle(
+              color: Colors.pink, 
+              backgroundColor: Colors.yellow,
+              fontSize: 20,
+              fontWeight: FontWeight.w400
+            ),
+          )
+        ),
+      ),
+    );
+  }
+}
+
+class DetailScreen extends StatelessWidget {
+  DetailScreen({Key? key}) : super(key: key);
+  List _imageUrl = [
+    'assets/images/amy1.jpg',
+    'assets/images/amy3.jpg',
+    'assets/images/amy2.jpg',
+    'assets/images/amy4.jpg',
+    'assets/images/amy1.jpg',
+    'assets/images/amy1.jpg',
+    'assets/images/amy1.jpg',
+    'assets/images/amy1.jpg',
+    'assets/images/amy1.jpg',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Detail Screen'),
+      ),
+      body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        slivers: [
+          SliverGrid(
+          //Grid
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, //Grid按两列显示
+            mainAxisSpacing: 15.0,
+            crossAxisSpacing: 15.0,
+            // childAspectRatio: 4.0,
+          ),
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              //创建子widget
+              return Container(
+                width: 100,
+                height: 100,
+                color: Colors.red,
+                // child: Text(_imageUrl[index]),
+                child: Image.asset(_imageUrl[index], fit: BoxFit.fill,),
+              );
+            },
+            childCount: _imageUrl.length,
+          ),
+        ),
+          
+
+          // SliverList(
+          //   delegate: SliverChildBuilderDelegate(
+          //     (context, index) => Text('amy'),
+          //     childCount: 10,
+          //   )
+          // ),
+          // GridView.builder(gridDelegate: gridDelegate, itemBuilder: itemBuilder)
+          // ListView.builder(itemBuilder: (context, index) => Text('$index'), itemCount: 10,),
+        ],
+      ),
+      
+      
+      // GestureDetector(
+      //     onTap: () {
+      //       Navigator.pop(context);
+      //     },
+      //     child: Column(
+      //       children: [
+      //         // ListView.builder(itemBuilder: (context, index) => Text('$index'), itemCount: 10,),
+      //         Center(
+      //           child: Hero(
+      //             tag: 'imageHero',
+      //             child: Image.network(
+      //               'https://picsum.photos/250?image=9',
+      //             ),
+      //           ),
+      //         ),
+      //       ],
+      //     )),
     );
   }
 }
