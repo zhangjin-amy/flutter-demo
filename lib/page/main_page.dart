@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_demo/page/Home.dart';
 import 'package:flutter_application_demo/page/Profile.dart';
+import 'package:flutter_application_demo/page/album.dart';
 import 'package:flutter_application_demo/page/todo.dart';
 
 class MainPage extends StatefulWidget {
@@ -10,7 +11,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State {
   int _selectedNavIndex = 0;
   List<Widget> containerList = [
-    Home(),
+    // Home(),
+    MyAlbum(),
     Profile(),
     TodoPage(),
   ];
