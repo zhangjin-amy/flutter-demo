@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_demo/page/1.dart';
-import 'package:flutter_application_demo/page/3.dart';
-import 'package:flutter_application_demo/page/AmyHome.dart';
-import 'package:flutter_application_demo/page/ListPage.dart';
+import 'package:flutter_application_demo/page/index.dart';
+import 'package:flutter_application_demo/page/main_page.dart';
+// import 'package:flutter_application_demo/page/Profile.dart';
 
 void main() {
   runApp(MyApp());
@@ -57,7 +56,7 @@ class ListRouzip extends StatelessWidget {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  final List<String> items = List<String>.generate(10000, (i) => 'Item $i');
+  // final List<String> items = List<String>.generate(10000, (i) => 'Item $i');
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +65,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainScreen(),
-      // home: HeroAnimation(),
+      // initialRoute: '/home',
+      // routes: {
+      //   '/home': (BuildContext context) => Home(),
+      //   '/profile':  (BuildContext context) => Profile(),
+      // },
+      home: MainPage()
     );
   }
 }
